@@ -1,9 +1,17 @@
-import dotenv from "dotenv";
+import { loadEnv } from "./env";
+import { selectAndHello } from "./provider";
 
-let loaded = false;
+async function main() {
+  loadEnv();
 
-export function loadEnv(): void {
-  if (loaded) return;
-  dotenv.config({ quiet: true });
-  loaded = true;
+  try {
+    const result = await selectAndHello();
+
+    process.stdout.write(JSON.stringify(result, null, 2) + "\n");
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(message);
+  }
 }
+
+main();

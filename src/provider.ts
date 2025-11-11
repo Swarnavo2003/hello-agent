@@ -16,7 +16,7 @@ async function helloGemini(): Promise<HelloOutput> {
   if (!apiKey) throw new Error("Missing GOOGLE_API_KEY in env");
 
   const model = "gemini-2.0-flash-lite";
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?=key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   const response = await fetch(url, {
     method: "POST",
@@ -99,7 +99,7 @@ async function helloOpenAI(): Promise<HelloOutput> {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("Missing OPENAI_API_KEY in env");
 
-  const model = "llama-3.1-8b-instant";
+  const model = "gpt-4o-mini";
   const url = `https://api.openai.com/v1/chat/completions`;
 
   const response = await fetch(url, {
